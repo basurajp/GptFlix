@@ -1,10 +1,12 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
-import signInReducer from "./signSlice";  // Import the correct reducer
+import signInReducer from "./signSlice"; // Import the correct reducer
+import userReducer from "./userSlice";
 
 const store = configureStore({
   reducer: {
-    signIn: signInReducer,  
+    signIn: signInReducer,
+    user: userReducer,
   },
 });
 

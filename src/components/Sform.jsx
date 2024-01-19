@@ -3,10 +3,18 @@ import Header from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignIn } from "../utils/store/signSlice";
 import { useForm } from "react-hook-form";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Sform = () => {
   const dispatch = useDispatch();
   const signInState = useSelector((store) => store.signIn.isSignIn);
+  const navigate = useNavigate()
 
   const changeSignInState = () => {
     dispatch(setSignIn(!signInState));
@@ -20,8 +28,51 @@ const Sform = () => {
   } = useForm();
 
   const formdata = (data) => {
-    console.log(data);
-    reset();
+    if (!signInState) {
+      // sign up
+      createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+
+
+          updateProfile(user, {
+            displayName:data.fullName, photoURL: "https://media.licdn.com/dms/image/D5603AQFPRJKXKaU8xw/profile-displayphoto-shrink_100_100/0/1701794854020?e=1710979200&v=beta&t=ylHL9nvnQJh8iOOOyY_CIt3H5vYL2X2sFIDxU_Ol9RI"
+          }).then(() => {
+            navigate('/browse')
+            
+          }).catch((error) => {
+            // An error occurred
+            // ...
+          });
+          
+      
+      
+      
+
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(error.message);
+
+        });
+    } else {
+      // sign in logic
+
+      signInWithEmailAndPassword(auth, data.email, data.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate('/browse')
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(error.message);
+        });
+    }
   };
 
   return (
@@ -51,7 +102,7 @@ const Sform = () => {
       <div className="mb-2">
         <input
           {...register("email", { required: "Email is required" })}
-          type="text"
+          type="email"
           placeholder="Email Address"
           className={`w-full px-2 py-3 rounded-md bg-gray-600 ${
             errors.email && "border-red-500"
