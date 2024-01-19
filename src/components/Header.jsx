@@ -4,6 +4,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
+import { NETFLIX_LOGO } from "../utils/contants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -50,8 +51,8 @@ const Header = () => {
     <div className="absolute px-6 py-2 bg-gradient-to-b from-black z-10 w-full flex items-center justify-between">
       <img
         className="w-24 lg:w-44"
-        src="https://i.ibb.co/fr41fWT/png-transparent-netflix-streaming-media-television-show-logo-netflix-television-text-trademark-thumb.png"
-        alt="Tthis is an logo"
+        src={NETFLIX_LOGO}
+        alt="This is an logo"
       />
 
       {user && (
