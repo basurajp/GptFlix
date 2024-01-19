@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignIn } from "../utils/store/signSlice";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { errorToast, sucessToast } from "../utils/toastFunction";
 
 const Sform = () => {
   const dispatch = useDispatch();
@@ -32,47 +33,40 @@ const Sform = () => {
         .then((userCredential) => {
           const user = userCredential.user;
 
-
-
           updateProfile(user, {
-            displayName:data.fullName, photoURL: "https://media.licdn.com/dms/image/D5603AQFPRJKXKaU8xw/profile-displayphoto-shrink_100_100/0/1701794854020?e=1710979200&v=beta&t=ylHL9nvnQJh8iOOOyY_CIt3H5vYL2X2sFIDxU_Ol9RI"
-          }).then(() => {
-       
-            
-          }).catch((error) => {
-            // An error occurred
-            // ...
-          });
-          
-      
-      
-      
-
-
+            displayName: data.fullName,
+            photoURL:
+              "https://media.licdn.com/dms/image/D5603AQFPRJKXKaU8xw/profile-displayphoto-shrink_100_100/0/1701794854020?e=1710979200&v=beta&t=ylHL9nvnQJh8iOOOyY_CIt3H5vYL2X2sFIDxU_Ol9RI",
+          })
+            .then(() => {
+              sucessToast("Sign up Sucess");
+            })
+            .catch((error) => {});
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert(error.message);
 
+          errorToast(errorMessage);
         });
     } else {
       // sign in logic
 
       signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-       
+          sucessToast("Signed sucess");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(error.message);
+          errorToast(errorMessage);
         });
     }
   };
 
+
+  
   return (
     <form
       className="wf bg-black absolute lg:w-3/12 lg:my-36 lg:right-0 lg:left-0 lg:bottom-[-100px]  lg:mx-auto lg:h-auto text-white bg-opacity-80  py-16 px-6 lg:py-5 w-full h-full"
