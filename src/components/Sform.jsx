@@ -9,12 +9,10 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 
 const Sform = () => {
   const dispatch = useDispatch();
   const signInState = useSelector((store) => store.signIn.isSignIn);
-  const navigate = useNavigate()
 
   const changeSignInState = () => {
     dispatch(setSignIn(!signInState));
@@ -39,7 +37,7 @@ const Sform = () => {
           updateProfile(user, {
             displayName:data.fullName, photoURL: "https://media.licdn.com/dms/image/D5603AQFPRJKXKaU8xw/profile-displayphoto-shrink_100_100/0/1701794854020?e=1710979200&v=beta&t=ylHL9nvnQJh8iOOOyY_CIt3H5vYL2X2sFIDxU_Ol9RI"
           }).then(() => {
-            navigate('/browse')
+       
             
           }).catch((error) => {
             // An error occurred
@@ -65,7 +63,7 @@ const Sform = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate('/browse')
+       
         })
         .catch((error) => {
           const errorCode = error.code;
