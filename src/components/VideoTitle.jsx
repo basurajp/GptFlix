@@ -1,20 +1,18 @@
 import React from "react";
 
-const VideoTitle = () => {
+const VideoTitle = ({title,overview,id}) => {
   return (
-    <div className="w-full h-full absolute ">
-      <div className="w-3/4 h-full  flex flex-col justify-center gap-4 pl-4 lg:pl-10 ">
-        <h1 className="text-5xl lg:text-6xl font-bold">Shoorveer</h1>
-        <p className="w-full text-sm lg:text-lg leading-none lg:w-3/4">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea,
-          veritatis ratione deserunt nihil iste aperiam alias a veniam? Eaque,
-          error?
+    <div className="">
+      <div className="w-[90%] lg:h-3/4   flex flex-col justify-center gap-2 pl-4  pb-2 pt-1 ">
+        <h1 className="text-2xl lg:text-6xl font-bold text-nowrap w-60   lg:w-auto overflow-hidden">{title}</h1>
+        <p className="w-[60%]  text-xs lg:text-lg  lg:w-1/4 h-12 lg:h-auto overflow-hidden">
+         {overview}
         </p>
-        <div className="btns">
-          <button className="px-4 py-2 lg:px-10 lg:py-3 bg-zinc-100 text-black font-semibold rounded-lg mr-2 lg:mr-4">
+        <div className="btns pt-2 lg:pt-4">
+          <button className="px-4 py-1 lg:px-10 lg:py-3 bg-zinc-100 text-black font-semibold rounded-lg mr-2 lg:mr-4">
             Watch Now{" "}
           </button>
-          <button className="px-6 py-3 bg-zinc-100 text-black font-semibold rounded-lg">
+          <button className="px-4 py-1 lg:py-3 bg-zinc-100 text-black font-semibold rounded-lg ">
             +
           </button>
         </div>

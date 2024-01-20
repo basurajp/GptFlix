@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import useMovieTrailer from "../Hooks/useMovieTrailer";
 
-const VideoBackground = () => {
-  const videoUrl = "https://www.youtube.com/embed/BblraEtrFLI";
 
-  return (
-    <div className="h-full w-full bg-red-100 ">
+const VideoBackground = ({ movieId }) => {
+  const trailerVideo = useSelector((store) => store.movies?.tarilerVideo);
+
+
+  useMovieTrailer(movieId)
+
+  return trailerVideo &&  (
+    <div className=" w-screen bg-zinc-500 h-52 lg:h-[80vh]  ">
       <iframe
-        className="w-full lg:h-full h-full"
+        className="w-screen lg:h-screen "
         title="YouTube Video"
-        src={videoUrl}
-     
+        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1`}
+        allow="autoplay"
       />
     </div>
   );

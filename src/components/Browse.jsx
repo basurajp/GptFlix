@@ -8,16 +8,16 @@ const Browse = () => {
   useNowPlayingMovies();
 
   return (
-    <div className="w-full min-h-screen ">
-      <div className="">
+    <div className="w-screen min-h-screen ">
+      <div className="h-full w-full ">
         <Header />
       </div>
 
-      <div className="w-screen h-1/2 lg:h-[90%] relative">
+      <div className="h-full w-full bg-zinc-200   ">
         <MainConatiner />
       </div>
 
-      <div className="">
+      <div className="h-full w-full bg-red-500 mt-6 ">
         <SecondarContainer />
       </div>
     </div>
