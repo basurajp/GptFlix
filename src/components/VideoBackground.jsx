@@ -10,7 +10,7 @@ const VideoBackground = ({ movieId }) => {
   useMovieTrailer(movieId)
 
   return trailerVideo &&  (
-    <div className=" w-screen bg-zinc-500 h-52 lg:h-[80vh]  ">
+    <div className=" w-screen  h-52 lg:h-[80vh]  ">
       <iframe
         className="w-screen lg:h-screen "
         title="YouTube Video"

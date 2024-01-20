@@ -22,7 +22,6 @@ const Login = () => {
   } = useForm();
 
   const formdata = (data) => {
-    console.log(data);
     reset();
   };
 

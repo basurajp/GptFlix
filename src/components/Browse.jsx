@@ -13,11 +13,11 @@ const Browse = () => {
         <Header />
       </div>
 
-      <div className="h-full w-full bg-zinc-200   ">
+      <div className="h-full w-full    ">
         <MainConatiner />
       </div>
 
-      <div className="h-full w-full bg-red-500 mt-6 ">
+      <div className="">
         <SecondarContainer />
       </div>
     </div>

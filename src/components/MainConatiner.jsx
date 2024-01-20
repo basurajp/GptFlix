@@ -12,11 +12,11 @@ const MainConatiner = () => {
 
   return (
     <div
-      className=" w-full h-full relative
+      className="  relative
       "
     >
       <VideoBackground movieId={id} />
-      <div className=" w-screen lg:h-screen absolute pt-12  pl-2 lg:pt-60   top-0 text-white bg-gradient-to-r from-black ">
+      <div className="  lg:h-screen absolute pt-12  pl-2 lg:pt-52   top-0 text-white bg-gradient-to-r from-black ">
         <VideoTitle title={title} overview={overview} id={id} />
       </div>
     </div>
