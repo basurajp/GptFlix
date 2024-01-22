@@ -12,7 +12,7 @@ const Browse = () => {
   useNowPlayingMovies();
 
   return (
-    <div className="w-screen min-h-screen ">
+    <div className="w-screen min-h-screen lg:-mt-28 ">
       <div className="h-full w-full ">
         <Header />
       </div>
