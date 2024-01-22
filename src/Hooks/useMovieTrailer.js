@@ -5,6 +5,9 @@ import { useEffect } from "react";
 
 const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
+  const popularMoviesData = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
 
   const getMovieData = async () => {
     const data = await fetch(
@@ -22,7 +25,7 @@ const useMovieTrailer = (movieId) => {
   };
 
   useEffect(() => {
-    getMovieData();
+    !popularMoviesData && getMovieData();
   }, []);
 };
 

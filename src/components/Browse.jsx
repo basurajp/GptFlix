@@ -3,8 +3,12 @@ import Header from "./Header";
 import useNowPlayingMovies from "../Hooks/useNowPlaingMovies";
 import MainConatiner from "./MainConatiner";
 import SecondarContainer from "./SecondarContainer";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
+import { SUPPORTED_LANGUAGES } from "../utils/languagesConstant";
 
 const Browse = () => {
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   useNowPlayingMovies();
 
   return (
@@ -13,13 +17,26 @@ const Browse = () => {
         <Header />
       </div>
 
-      <div className="h-full w-full    ">
-        <MainConatiner />
-      </div>
 
-      <div className="">
-        <SecondarContainer />
-      </div>
+
+
+      {showGptSearch ? (
+        <>
+          <div className="">
+            <GptSearch />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="h-full w-full    ">
+            <MainConatiner />
+          </div>
+
+          <div className="">
+            <SecondarContainer />
+          </div>
+        </>
+      )}
     </div>
   );
 };
